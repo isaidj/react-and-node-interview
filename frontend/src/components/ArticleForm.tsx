@@ -10,7 +10,7 @@ const ArticleForm: React.FC = () => {
   if (loading) return <div className="text-center py-4">Loading...</div>;
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8">
+    <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8 p-4 ">
       {error && <div className="text-red-500 mb-4">{error}</div>}
       <div className="mb-4">
         <label htmlFor="title" className="block mb-2">
