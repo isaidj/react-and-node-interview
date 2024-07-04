@@ -24,6 +24,7 @@
    ```
    PORT=5000
    MONGODB_URI=mongodb://localhost:27017/nombre_de_tu_base_de_datos
+   FRONTEND_URL=http://localhost:3000
    ```
 Para la prueba tengo una base de datos llamada `articlesdb` que es la que podran ver en la version desplegada de vercel, si quiere puede crear una cargar la base de datos con el archivo `data.json` que se encuentra en la raiz del proyecto, solo tiene que hacer una petición POST a la ruta `/articles/load` y listo.
 
