@@ -1,8 +1,6 @@
-const Article = require("../models/Article");
-const fs = require("fs").promises; //promises because we are using async/await
-const path = require("path");
+import Article from "../models/Article.js";
 
-exports.createArticle = async (req, res) => {
+export const createArticle = async (req, res) => {
   try {
     const newArticle = new Article(req.body);
     const savedArticle = await newArticle.save();
@@ -12,7 +10,7 @@ exports.createArticle = async (req, res) => {
   }
 };
 
-exports.getAllArticles = async (req, res) => {
+export const getAllArticles = async (req, res) => {
   try {
     const articles = await Article.find();
     res.json(articles);
@@ -21,7 +19,7 @@ exports.getAllArticles = async (req, res) => {
   }
 };
 
-exports.getArticleById = async (req, res) => {
+export const getArticleById = async (req, res) => {
   try {
     const article = await Article.findById(req.params.id);
     if (!article)
@@ -32,7 +30,7 @@ exports.getArticleById = async (req, res) => {
   }
 };
 
-exports.updateArticle = async (req, res) => {
+export const updateArticle = async (req, res) => {
   try {
     const updatedArticle = await Article.findByIdAndUpdate(
       req.params.id,
@@ -47,7 +45,7 @@ exports.updateArticle = async (req, res) => {
   }
 };
 
-exports.deleteArticle = async (req, res) => {
+export const deleteArticle = async (req, res) => {
   try {
     const deletedArticle = await Article.findByIdAndDelete(req.params.id);
     if (!deletedArticle)
@@ -58,7 +56,7 @@ exports.deleteArticle = async (req, res) => {
   }
 };
 
-exports.loadArticles = async (req, res) => {
+export const loadArticles = async (req, res) => {
   try {
     const dataPath = path.join(__dirname, "../../../data.json");
     const data = await fs.readFile(dataPath, "utf8");

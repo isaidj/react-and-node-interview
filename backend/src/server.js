@@ -1,7 +1,7 @@
-const express = require("express");
-const connectDB = require("./config/database");
-const articleRoutes = require("./routes/articleRoutes");
-const cors = require("cors");
+import express from "express";
+import connectDB from "./config/database.js";
+import articleRoutes from "./routes/articleRoutes.js";
+import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -15,7 +15,7 @@ app.use(express.json());
 // Configuración de CORS
 app.use(
   cors({
-    origin: "http://localhost:5173", // Permitir solicitudes desde el frontend
+    origin: "http://localhost:3000", // Permitir solicitudes desde el frontend
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos HTTP permitidos
     allowedHeaders: ["Content-Type", "Authorization"], // Cabeceras permitidas
   })

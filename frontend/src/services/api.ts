@@ -2,7 +2,8 @@ import axios from "axios";
 import { Article } from "../types/Article";
 
 //api form .env
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = import.meta.env.VITE_API_URL; 
+console.log(API_URL);
 
 export const getArticles = async (): Promise<Article[]> => {
   const response = await axios.get<Article[]>(`${API_URL}/articles`);

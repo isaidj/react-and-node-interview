@@ -1,6 +1,7 @@
-const express = require("express");
+import express from "express";
+import * as articleController from "../controllers/articleController.js";
+
 const router = express.Router();
-const articleController = require("../controllers/articleController");
 
 router.post("/", articleController.createArticle);
 
@@ -14,4 +15,4 @@ router.delete("/:id", articleController.deleteArticle);
 
 router.post("/load", articleController.loadArticles); //just used for loading articles for the first time
 
-module.exports = router;
+export default router;

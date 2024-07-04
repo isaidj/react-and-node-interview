@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
-require("dotenv").config();
-
+import mongoose from "mongoose";
+// require("dotenv").config(); //its not necessary to import dotenv, it will be loaded automatically because we are using es6 modules
+import dotenv from "dotenv";
+dotenv.config();
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
@@ -14,4 +15,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+export default connectDB;
