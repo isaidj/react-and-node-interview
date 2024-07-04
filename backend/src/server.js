@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL, // Allow the frontend to connect to this server
+    origin: process.env.FRONTEND_URL || "http://localhost:3000", // Allow the frontend to access this API
     methods: ["GET", "POST", "PUT", "DELETE"], // Methods allowed
     allowedHeaders: ["Content-Type", "Authorization"],
   })
