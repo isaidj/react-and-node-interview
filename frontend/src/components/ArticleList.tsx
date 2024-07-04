@@ -48,7 +48,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ isManagement = false }) => {
             <h2 className="text-2xl font-bold mb-4">Article Management</h2>
             <Link
               to="/management/create"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block text-nowrap"
             >
               New Article
             </Link>
