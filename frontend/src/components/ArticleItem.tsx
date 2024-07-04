@@ -51,6 +51,13 @@ const ArticleItem: React.FC<ArticleItemProps> = ({
               src={article.urlToImage}
               alt={article.title}
               className="w-full h-full object-cover"
+              onError={(e) => {
+                //if image fails to load, show a placeholder image
+                const img = e.target as HTMLImageElement;
+                img.onerror = null; // prevent infinite loop
+                img.src = "/netforemost.ico";
+                img.style.opacity = "0.1";
+              }}
             />
           ) : (
             <SvgNoPhoto className="w-full h-full object-cover opacity-10" />

@@ -12,7 +12,14 @@ export const createArticle = async (req, res) => {
 
 export const getAllArticles = async (req, res) => {
   try {
-    const articles = await Article.find();
+    const sort = req.query.order || "desc";
+    let sortOption = {};
+    if (sort === "asc") {
+      sortOption = { publishedAt: 1 };
+    } else if (sort === "desc") {
+      sortOption = { publishedAt: -1 };
+    }
+    const articles = await Article.find().sort(sortOption);
     res.json(articles);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -22,8 +29,7 @@ export const getAllArticles = async (req, res) => {
 export const getArticleById = async (req, res) => {
   try {
     const article = await Article.findById(req.params.id);
-    if (!article)
-      return res.status(404).json({ message: "Artículo no encontrado" });
+    if (!article) return res.status(404).json({ message: "Article not found" });
     res.json(article);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -38,7 +44,7 @@ export const updateArticle = async (req, res) => {
       { new: true }
     );
     if (!updatedArticle)
-      return res.status(404).json({ message: "Artículo no encontrado" });
+      return res.status(404).json({ message: "Article not found" });
     res.json(updatedArticle);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -49,8 +55,8 @@ export const deleteArticle = async (req, res) => {
   try {
     const deletedArticle = await Article.findByIdAndDelete(req.params.id);
     if (!deletedArticle)
-      return res.status(404).json({ message: "Artículo no encontrado" });
-    res.json({ message: "Artículo eliminado con éxito" });
+      return res.status(404).json({ message: "Article not found" });
+    res.json({ message: "Article deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

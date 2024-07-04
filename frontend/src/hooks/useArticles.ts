@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import { getArticles } from "../services/api";
 import { Article } from "../types/Article";
 
+type SortOption = "desc" | "asc";
+
 interface UseArticlesResult {
   articles: Article[];
   loading: boolean;
   error: string | null;
+
 }
 
 const useArticles = (): UseArticlesResult => {

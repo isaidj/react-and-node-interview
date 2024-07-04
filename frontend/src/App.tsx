@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import ArticleList from "./components/ArticleList";
@@ -6,7 +7,7 @@ import ArticleDetail from "./components/ArticleDetail";
 import ManagementPage from "./components/ManagementPage";
 import Navigation from "./components/Navigation";
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <div className="min-h-screen bg-gray-100">
@@ -25,6 +26,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;

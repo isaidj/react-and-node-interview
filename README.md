@@ -1,4 +1,67 @@
-# Prueba de backend en NodeJS
+# Presentacion 
+¡Hola! Soy Isai Hernandez, desarrollador full stack. Este proyecto demuestra mis habilidades tanto en desarrollo backend como frontend, aplicando una variedad buenas practicas.
+
+# Guía de Configuración y Ejecución del Proyecto
+
+## Requisitos del Sistema
+
+- Node.js (versión 14.x o superior)
+
+
+## Configuración del Backend
+
+1. Navega al directorio del backend:
+   ```
+   cd backend
+   ```
+
+2. Instala las dependencias:
+   ```
+   npm install
+   ```
+
+3. Crea un archivo `.env` en el directorio raíz del backend con el siguiente contenido:
+   ```
+   PORT=5000
+   MONGODB_URI=mongodb://localhost:27017/nombre_de_tu_base_de_datos
+   ```
+Para la prueba tengo una base de datos llamada `articlesdb` que es la que podran ver en la version desplegada de vercel, si quiere puede crear una cargar la base de datos con el archivo `data.json` que se encuentra en la raiz del proyecto, solo tiene que hacer una petición POST a la ruta `/articles/load` y listo.
+
+4. Inicia el servidor de desarrollo:
+   ```
+   npm run dev
+   ```
+
+El backend ahora debería estar corriendo en `http://localhost:5000` si no has cambiado el puerto.
+
+## Configuración del Frontend
+
+1. Navega al directorio del frontend:
+   ```
+   cd frontend
+   ```
+
+2. Instala las dependencias:
+   ```
+   npm install
+   ```
+
+3. Crea un archivo `.env` en el directorio raíz del frontend con el siguiente contenido:
+   ```
+   VITE_API_URL=http://localhost:5000
+   ```
+    Si has cambiado el puerto del backend, acambia el puerto en la variable `VITE_API_URL`.
+
+4. Inicia el servidor de desarrollo:
+   ```
+   npm run dev
+   ```
+
+El frontend ahora debería estar corriendo en `http://localhost:3000`.
+
+## Aqui iniciará los requisitos de la prueba tecnica ⬇️⬇️
+
+## Prueba de backend en NodeJS
 
 La primer parte de la prueba tiene como objetivo evaluar tus conocimientos y competencias con la tecnologíad NodeJS y Mongodb.
 

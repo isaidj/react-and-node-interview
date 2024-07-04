@@ -7,7 +7,7 @@ const ArticleSchema = new mongoose.Schema(
     url: { type: String, required: true },
     urlToImage: { type: String, required: true },
     publishedAt: { type: Date, default: Date.now },
-    content: { type: String, required: true },
+    content: { type: String, required: false }, //I I added this field to be more credible
   },
   { timestamps: true }
 );
