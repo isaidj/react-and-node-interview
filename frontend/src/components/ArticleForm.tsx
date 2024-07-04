@@ -1,103 +1,104 @@
 // src/components/ArticleForm.tsx
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { createArticle, updateArticle, getArticleById } from "../services/api";
-import { Article } from "../types/Article";
+import React from "react";
+
+import useArticleForm from "../hooks/useArticleForm";
 
 const ArticleForm: React.FC = () => {
-  const [article, setArticle] = useState<Partial<Article>>({});
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+  const { article, loading, error, handleChange, handleSubmit, isEditing } =
+    useArticleForm();
 
-  useEffect(() => {
-    if (id) {
-      getArticleById(id).then(setArticle);
-    }
-  }, [id]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (id) {
-      await updateArticle(id, article);
-    } else {
-      await createArticle(article);
-    }
-    navigate("/");
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setArticle({ ...article, [e.target.name]: e.target.value });
-  };
+  if (loading) return <div className="text-center py-4">Loading...</div>;
 
   return (
     <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8">
+      {error && <div className="text-red-500 mb-4">{error}</div>}
       <div className="mb-4">
+        <label htmlFor="title" className="block mb-2">
+          Title
+        </label>
         <input
+          type="text"
+          id="title"
           name="title"
           value={article.title || ""}
           onChange={handleChange}
-          placeholder="Título"
           required
-          className="w-full px-3 py-2 border rounded-md"
+          className="w-full px-3 py-2 border rounded"
         />
       </div>
       <div className="mb-4">
+        <label htmlFor="author" className="block mb-2">
+          Author
+        </label>
         <input
+          type="text"
+          id="author"
           name="author"
           value={article.author || ""}
           onChange={handleChange}
-          placeholder="Autor"
           required
-          className="w-full px-3 py-2 border rounded-md"
+          className="w-full px-3 py-2 border rounded"
         />
       </div>
       <div className="mb-4">
+        <label htmlFor="description" className="block mb-2">
+          Description
+        </label>
         <textarea
+          id="description"
           name="description"
           value={article.description || ""}
           onChange={handleChange}
-          placeholder="Descripción"
           required
-          className="w-full px-3 py-2 border rounded-md"
+          className="w-full px-3 py-2 border rounded"
         />
       </div>
       <div className="mb-4">
-        <input
-          name="url"
-          value={article.url || ""}
-          onChange={handleChange}
-          placeholder="URL"
-          required
-          className="w-full px-3 py-2 border rounded-md"
-        />
-      </div>
-      <div className="mb-4">
-        <input
-          name="urlToImage"
-          value={article.urlToImage || ""}
-          onChange={handleChange}
-          placeholder="URL de la imagen"
-          required
-          className="w-full px-3 py-2 border rounded-md"
-        />
-      </div>
-      <div className="mb-4">
+        <label htmlFor="content" className="block mb-2">
+          Content
+        </label>
         <textarea
+          id="content"
           name="content"
           value={article.content || ""}
           onChange={handleChange}
-          placeholder="Contenido"
+          className="w-full px-3 py-2 border rounded"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="url" className="block mb-2">
+          URL
+        </label>
+        <input
+          type="url"
+          id="url"
+          name="url"
+          value={article.url || ""}
+          onChange={handleChange}
           required
-          className="w-full px-3 py-2 border rounded-md"
+          className="w-full px-3 py-2 border rounded"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="urlToImage" className="block mb-2">
+          Image URL
+        </label>
+        <input
+          type="url"
+          id="urlToImage"
+          name="urlToImage"
+          value={article.urlToImage || ""}
+          onChange={handleChange}
+          required
+          className="w-full px-3 py-2 border rounded"
         />
       </div>
       <button
         type="submit"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        disabled={loading}
       >
-        {id ? "Actualizar" : "Crear"} Artículo
+        {isEditing ? "Update" : "Create"} Article
       </button>
     </form>
   );
